@@ -26,18 +26,33 @@ var quotes = [
       rating: "G"
     }
   ];
- d3.select('#quotes')
-       .style('list-style', 'non')
-    .selectAll('li')
-    .data(quotes)
-    .enter()
-    .append('li')
-    .text((d,i)=> `${d.quote} , ${d.movie} ${d.rating}`) 
-      .style('margin', '20px')
-      .style('padding', '20px')
-      .style('font-size', d => d.quote.length <15 ? '2em' : '1em')
-      .style('font-weight', d => d.movie ? 'bold': null) 
-      .style('background', d => d.movie ? 'cyan' : null)
+  const colorCodes = {
+  "G":   "#808000", 
+ 	"PG": "#ff0f00", 
+ 	"PG-1 3": "cyan",
+  "R": "#0f00ff"
+ 
+  }
+
+d3.select('#quotes')
+     .style('list-style', 'non')
+  .selectAll('li')
+  .data(quotes)
+  .enter()
+  .append('li')
+  .text(d=> `${d.quote} ${d.movie} ${d.rating}`)
+     .style('background', d =>  colorCodes[d.rating])
+     .style('background', d =>  'cyan')
+  
+
+var filterdQuotes = quotes.filter(movie => movie.rating !== "R")
+
+
+ d3.selectAll('li')
+    .data(filterdQuotes, d => d.quote)
+    .exit()
+    .remove()
+
 
 
     
