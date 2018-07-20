@@ -26,19 +26,19 @@ var quotes = [
       rating: "G"
     }
   ];
- console.log(  d3.select('#quotes')
+ d3.select('#quotes')
        .style('list-style', 'non')
     .selectAll('li')
     .data(quotes)
     .enter()
     .append('li')
     .text((d,i)=> `${d.quote} , ${d.movie} ${d.rating}`) 
-    .style('margin', '20px')
-    .style('padding', '20px')
-    .style('font-size', d => d.quote.length <15 ? '2em' : '1em')
-    .style('font-weight', d => d.movie ? 'bold': null) 
-    .style('background', d => d.movie ? 'cyan' : null)
+      .style('margin', '20px')
+      .style('padding', '20px')
+      .style('font-size', d => d.quote.length <15 ? '2em' : '1em')
+      .style('font-weight', d => d.movie ? 'bold': null) 
+      .style('background', d => d.movie ? 'cyan' : null)
 
-)
+
     
 
